@@ -76,11 +76,10 @@ const QuizPage = () => {
       return prevResult;
     });
     
-    // Przekieruj do ekranu koncowego tylko po zakończeniu quizu
     if (currentQuestionIndex === questions.length - 1) {
       const timeoutId = setTimeout(() => {
         navigate('/quiz/end-quiz', { state: { result, questionsNumber, userAnswers, questions, quizId } });
-      }, 2000);
+      }, 1000);
       return () => clearTimeout(timeoutId);
     }
 

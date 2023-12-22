@@ -13,7 +13,6 @@ const CategoryPage = () => {
 
   useEffect(() => {
     handleGetAllCategories()
-    console.log("kategorie: ", categories)
   }, [])
 
   const handleGetAllCategories = () => {
@@ -33,7 +32,6 @@ const CategoryPage = () => {
   }
 
   const handleGetQuizzesForCategory = (categoryId) => {
-    console.log("wybor quizu z id: ", categoryId);
     axios({
         method: 'get',
         url: `http://localhost:8080/api/quiz/get/assigned/${categoryId}`,

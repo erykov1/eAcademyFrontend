@@ -13,10 +13,10 @@ const RegisterForm = () => {
     event.preventDefault()
     axios({
       method: 'post',
-      url: 'https://localhost:8080/api/auth/user/register',
+      url: 'http://localhost:8080/api/auth/user/register',
       data: {
         email: email,
-        login: username,
+        username: username,
         password: password,
       }
     }).then((response) => {
@@ -39,7 +39,7 @@ const RegisterForm = () => {
       <form className='form-content'>
         <div className="form-group">
           <label for="login-content">Login : </label>
-          <input type="login" class="form-control" id="login-content" placeholder="Wpisz nazwę użytkownika" onChange={(e) => setUsername(e.target.value)}/>
+          <input type="text" class="form-control" id="login-content" placeholder="Wpisz nazwę użytkownika" onChange={(e) => setUsername(e.target.value)}/>
         </div>
         <div className="form-group">
           <label for="email-content">Email : </label>

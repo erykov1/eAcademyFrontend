@@ -46,16 +46,6 @@ code {
   font-size: 20px;
 }
 
-.navbar-section {
-  margin: 0;
-  width: 100%;
-  height: 100px;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .login-btn {
   width: 44px;
   height: 44px;
@@ -148,14 +138,6 @@ code {
 
 #label-signin {
   margin-top: 30px;
-}
-
-#home-label {
-  background-color: white;
-  font-size: 24px;
-  font-weight: 600;
-  text-decoration: none;
-  color: inherit;
 }
 
 .add-questions-form-container {
@@ -354,6 +336,7 @@ code {
   width: 200px;
   height: 75px;
   font-size: 24px;
+  margin: 15px;
 }
 
 .quiz-summary-result {
@@ -440,4 +423,37 @@ code {
 
 .quiz-btn:hover {
   background-color: #27ae60;
+}
+
+.navbar-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-item {
+  margin: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.nav-header {
+  margin: 15px;
+  font-size: 32px; 
+}
+
+.no-decoration {
+  text-decoration: none;
+  font-size: 26px;
+  color: #000;
+  margin: 15px;
 }

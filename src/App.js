@@ -12,6 +12,7 @@ import { Routes, Route, BrowserRouter, Navigate} from 'react-router-dom';
 import AddQuizPage from './pages/AddQuizPage'
 import AddCategoryPage from './pages/AddCategoryPage'
 import QuizDetailsPage from './pages/QuizDetailsPage';
+import EditQuestionsPage from './pages/EditQuestionsPage';
 
 function App() {
   return (
@@ -48,6 +49,11 @@ function App() {
             isExpired(localStorage.getItem("token") ?? "") ? (
               <Navigate replace to='/' />
             ) : (<CategoryPage />)
+          } />
+          <Route path='/quiz/edit/:quizId' element={
+            isExpired(localStorage.getItem("token") ?? "") ? (
+              <Navigate replace to='/' />
+            ) : (<EditQuestionsPage />)
           } />
         </Routes>
       </BrowserRouter>

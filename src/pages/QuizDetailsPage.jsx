@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import QuizOpinionRating from "../components/QuizOpinionRating";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const QuizDetailsPage = () => {
   const [quizDetails, setQuizDetails] = useState([])
@@ -12,6 +13,9 @@ const QuizDetailsPage = () => {
   const [quizInfo, setQuizInfo] = useState()
   const [questionsNumber, setQuestionsNumber] = useState(0)
   const token = localStorage.getItem('token');
+  let decodedToken = token ? jwtDecode(token) : null;
+  let userRole = decodedToken ? decodedToken.role : null;
+  const isAdmin = decodedToken?.role === 'ADMIN';
   const { quizId } = useParams() 
   const navigate = useNavigate();
 
@@ -77,6 +81,16 @@ const QuizDetailsPage = () => {
           </>
         )}
         <button type="button" class="btn btn-primary" id="resolve-quiz" onClick={() => navigate(`/quiz/game/${quizId}`)}>Rozwiąż Quiz</button>
+        {isAdmin && (
+          <button
+            type="button"
+            className="btn btn-warning"
+            id="resolve-quiz"
+            onClick={() => navigate(`/quiz/edit/${quizId}`)}
+          >
+            Edytuj pytania
+          </button>
+        )}
       </div>
       {quizDetails.map((opinion, index) => (
         <QuizOpinionRating
