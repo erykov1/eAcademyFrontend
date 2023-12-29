@@ -13,6 +13,7 @@ const EndQuizPage = () => {
   const navigate = useNavigate();
   const [isCollapsed, setCollapsed] = useState(false)
   const [quizId, setQuizId] = useState(0)
+  const [summaryText, setSummaryText] = useState('')
 
   const handleCollapse = () => {
     setCollapsed(!isCollapsed)
@@ -29,23 +30,32 @@ const EndQuizPage = () => {
   };
 
   useEffect(() => {
-    if (location.state && location.state.result && location.state.userAnswers 
+    console.log("location ", location.state)
+    if (location.state && location.state.userAnswers 
       && location.state.questions && location.state.quizId) {
       setResult(location.state.result);
       setQuestionsNumber(location.state.questionsNumber)
       setUserAnswers(location.state.userAnswers)
       setQuestions(location.state.questions)
       setQuizId(location.state.quizId)
+      handleSummaryText()
     }
   }, [location.state]);
+
+  const handleSummaryText = () => {
+    if (result > 5) {
+      setSummaryText("pytań")
+    } else {
+      setSummaryText("pytania")
+    }
+  }
 
   return (
     <div className="end-quiz-page-container">
       <div className="end-quiz-section">
         <div>
           <p id="end-quiz-section-text">Ukończyłeś Quiz</p>
-          Na {questionsNumber} pytań udzieliłeś {result} poprawnych odpowiedzi
-          Twój wynik z quizu to: {result}
+          <p id="end-quiz-summary-text">Na {questionsNumber} {summaryText} udzieliłeś {result} poprawnych odpowiedzi</p>
         </div>
         <div className="btn-section-end-quiz">
           <button type="button" className="btn btn-primary" id="btn-end-quiz" onClick={() => navigate("/")}>Powrót do menu</button>

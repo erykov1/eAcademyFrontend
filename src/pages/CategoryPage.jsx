@@ -55,6 +55,7 @@ const CategoryPage = () => {
   return (
     <div className="category-page-container">
       <div className="category-page-categories">
+        <h2>Dostępne kategorie</h2>
         {categories.map((category, index) => (
           <div key={index}>
             <Category
@@ -67,6 +68,7 @@ const CategoryPage = () => {
       </div>
       <div className="separator" />
       <div className="category-section">
+        <h2>Quizy</h2>
         {quizzes.map((quiz) => (
           <div key={quiz.quizId}>
             <Quiz quizName={quiz.quizName} quizId={quiz.quizId} />

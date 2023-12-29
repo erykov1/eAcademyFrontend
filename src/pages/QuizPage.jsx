@@ -36,7 +36,6 @@ const QuizPage = () => {
         findAllQuestionsFromGivenQuiz(questionIds);
       })
       .catch((error) => {
-        console.log("Nie działa request");
         console.log(error);
       });
   };
@@ -68,32 +67,31 @@ const QuizPage = () => {
     const currentQuestion = questions[currentQuestionIndex];
     const isAnswerCorrect = selectedAnswerIndex === currentQuestion?.correctAnswer;
     setUserAnswers((prevAnswers) => [...prevAnswers, selectedAnswerIndex]);
-    setIsCorrect(isAnswerCorrect);
-    setResult((prevResult) => {
-      if (isAnswerCorrect) {
-        return prevResult + 1;
-      }
-      return prevResult;
-    });
+    setIsCorrect(isAnswerCorrect); 
+    setResult((prevResult) => (isAnswerCorrect ? prevResult + 1 : prevResult));
     
     if (currentQuestionIndex === questions.length - 1) {
+      console.log("user answers", userAnswers.push(selectedAnswerIndex))
       const timeoutId = setTimeout(() => {
-        navigate('/quiz/end-quiz', { state: { result, questionsNumber, userAnswers, questions, quizId } });
+        navigate('/quiz/end-quiz', {
+          state: { result, questionsNumber, userAnswers, questions, quizId },
+        });
       }, 1000);
+  
       return () => clearTimeout(timeoutId);
     }
-
-    setCurrentQuestionIndex((prevIndex) =>
-      prevIndex < questions.length - 1 ? prevIndex + 1 : prevIndex
-    );
-    
-    setIsCorrect(null);
+    setTimeout(() => {
+      setCurrentQuestionIndex((prevIndex) =>
+        prevIndex < questions.length - 1 ? prevIndex + 1 : prevIndex
+      );
+      setIsCorrect(null); 
+    }, 1000);
   };
 
   const currentQuestion = questions.length > 0 ? questions[currentQuestionIndex] : null;
 
   return (
-    <div className="quiz-page-contaier">
+    <div className="quiz-page-container">
       {currentQuestion && (
         <QuestionDetails
           key={currentQuestion.id}
@@ -110,6 +108,5 @@ const QuizPage = () => {
     </div>
   );
 }
-
 
 export default QuizPage;

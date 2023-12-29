@@ -51,9 +51,7 @@ const Navbar = () => {
               {userRole === 'ADMIN' && (
                 <>
                   <Link to="/add-category" className="no-decoration">Dodaj kategorię</Link>
-                  <button className='login-btn' onClick={() => navigate('/add-quiz')}>
-                    <img src={AddQuiz} alt='add quiz button' className='logout-img' />
-                  </button>
+                  <Link to="/add-quiz" className="no-decoration">Dodaj quiz</Link>
                 </>
               )}
               <button className='login-btn' onClick={handleLogout}>

@@ -190,7 +190,7 @@ code {
   flex-direction: row;
 }
 
-.quiz-btn {
+/* .quiz-btn {
   height: 75px;
   background-color: white;
   border: none;
@@ -199,7 +199,7 @@ code {
   margin: 5px;
   font-size: 24px;
   background-color: #6ac5fe;
-}
+} */
 
 .question-answer-container {
   width: 50%;
@@ -221,10 +221,9 @@ code {
   margin: 45px;
 }
 
-.btn-answer {
+#btn-answer {
   font-size: 24px;
   margin: 10px;
-  border-radius: 12px;
 }
 
 .end-quiz-section {
@@ -241,6 +240,10 @@ code {
   margin: 20px;
   font-size: 32px;
   font-weight: bold;
+}
+
+#end-quiz-summary-text {
+  font-size: 18px;
 }
 
 #btn-end-quiz {
@@ -284,11 +287,11 @@ code {
 
 .opinion-item {
   border: 1px solid #ddd;
-  margin: 10px auto; /* Ustawienie margin na auto centruje element na stronie */
+  margin: 10px auto; 
   padding: 10px;
   border-radius: 8px;
   background-color: #f9f9f9;
-  max-width: 50%; /* Ogranicz szerokość do około połowy strony */
+  max-width: 50%; 
 }
 
 .opinion-header {
@@ -311,7 +314,7 @@ code {
 
 .opinion-rating {
   font-weight: bold;
-  color: #007bff; /* Dodaj kolor oceny, możesz dostosować go do własnych preferencji */
+  color: #007bff;
 }
 
 .quiz-details-page-container {
@@ -330,6 +333,12 @@ code {
 
 .question-count {
   color: #555;
+  font-size: 18px;
+}
+
+.avg-rating {
+  color: #555;
+  font-size: 18px;
 }
 
 #resolve-quiz {
@@ -376,7 +385,10 @@ code {
 }
 
 .category-page-categories {
-  width: 30%;
+  width: 50%;
+  border: 2px solid #808080;
+  padding: 15px;
+  border-radius: 8px; 
 }
 
 .category-container {
@@ -407,9 +419,9 @@ code {
   width: 65%;
 }
 
-.quiz-container {
+/* .quiz-container {
   margin-bottom: 20px;
-}
+} */
 
 .quiz-btn {
   background-color: #2ecc71;
@@ -456,4 +468,26 @@ code {
   font-size: 26px;
   color: #000;
   margin: 15px;
+}
+
+/* Quiz.css */
+
+.quiz-container {
+  display: inline-block;
+  margin: 10px;
+}
+
+.quiz-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 2px solid #808080; /* Szara obwódka przycisku */
+  border-radius: 8px;
+  color: #fff; /* Biały kolor tekstu przycisku */
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 18px;
+}
+
+.quiz-btn:hover {
+  border-color: #d3d3d3; /* Jasnoszara obwódka po najechaniu myszką */
 }

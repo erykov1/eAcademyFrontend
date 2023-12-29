@@ -22,11 +22,9 @@ const LoginForm = () => {
         password: password,
       }
     }).then((response) => {
-      console.log(response.data)
       localStorage.setItem('token', response.data)
       navigate('/')
     }).catch((error) =>{
-      console.log("Nie dziala request")
       console.log(error)
     })
   }

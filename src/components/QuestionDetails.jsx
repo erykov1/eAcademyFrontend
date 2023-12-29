@@ -24,12 +24,12 @@ const QuestionDetails = ({ question, answerA, answerB, answerC, answerD, correct
           {question}
         </div>
         <div className="answers-section">
-          <button className="btn-answer" onClick={() => handleAnswerClick(answerA)}>{answerA}</button>
-          <button className="btn-answer" onClick={() => handleAnswerClick(answerB)}>{answerB}</button>
+          <button type="button" class="btn btn-primary" id="btn-answer" onClick={() => handleAnswerClick(answerA)}>{answerA}</button>
+          <button type="button" class="btn btn-primary" id="btn-answer" onClick={() => handleAnswerClick(answerB)}>{answerB}</button>
         </div>
         <div className="answers-section">
-          <button className="btn-answer" onClick={() => handleAnswerClick(answerC)}>{answerC}</button>
-          <button className="btn-answer" onClick={() => handleAnswerClick(answerD)}>{answerD}</button>
+          <button type="button" class="btn btn-primary" id="btn-answer" onClick={() => handleAnswerClick(answerC)}>{answerC}</button>
+          <button type="button" class="btn btn-primary" id="btn-answer" onClick={() => handleAnswerClick(answerD)}>{answerD}</button>
         </div>
       </div>
     </div>

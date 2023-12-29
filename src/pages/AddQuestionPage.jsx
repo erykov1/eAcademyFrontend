@@ -16,7 +16,6 @@ const AddQuestionPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log("Zaktualizowano pytania z id: ", questionsIds);
     handleAssignQuestionsToQuiz();
   }, [questionsIds]);
   

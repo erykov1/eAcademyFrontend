@@ -8,7 +8,7 @@ const HomePage = () => {
     <div className="home-page-container">
       <div className="home-page-header">
         <p id="home-page-header-text">Świat wiedzy czeka na Ciebie! <br/>
-        Rozpocznij swoją podróż nauki dzięki interaktywnym kursom w formie quizów</p>
+        Podnieś swoje kwalifikacje dzięki interaktywnym kursom w formie quizów</p>
       </div>
       <div className="home-page-section">
         <p id="home-page-section-text">

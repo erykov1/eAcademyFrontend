@@ -14,7 +14,7 @@ const QuizOpinionRating = ({username, opinion, rating, createdAt}) => {
       </div>
       <div className="opinion-content">
         <p className="opinion-text">{opinion}</p>
-        <div className="opinion-rating">Rating: {rating}/5</div>
+        <div className="opinion-rating">Ocena: {rating}/5</div>
       </div>
     </div>
   )

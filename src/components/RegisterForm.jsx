@@ -55,7 +55,7 @@ const RegisterForm = () => {
         </div>
         <button type="submit" className="btn btn-primary" id="btn-signin" onClick={processSignup}>Załóż konto</button>
         <div className="signin-section">
-          <p id="label-signin">Masz konto? Zaloguj się</p>
+          <p id="label-signin">Posiadasz już konto? Zaloguj się</p>
           <button type="submit" className="btn btn-primary" id="btn-redirect" onClick={() => navigate('/signin')}>Zaloguj się</button>
         </div>
       </form>
