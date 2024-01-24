@@ -20,6 +20,9 @@ const QuizDetailsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(!localStorage.getItem("token")) {
+      navigate("/")
+    }
     getQuizDetails()
     getQuizAvgRating()
     getQuizInfo()
@@ -50,7 +53,6 @@ const QuizDetailsPage = () => {
       }
     }).then((response) => {
       setAvgRating(response.data)
-      console.log("Id quizu : ", quizId, " ocena quizu: ", response.data)
     }).catch((error) => {
       console.log(error);
     });
@@ -79,7 +81,9 @@ const QuizDetailsPage = () => {
           <>
             <h2 className="quiz-name">{quizInfo.quizName}</h2>
             <p className="question-count">Liczba pytań: {questionsNumber}</p>
-            <p className="question-count">Średnia ocena quizu: {avgRating.quizRating}</p>
+            {avgRating.quizRating !== undefined && avgRating.quizRating !== null && (
+              <p className="question-count">Średnia ocena quizu: {avgRating.quizRating}</p>
+            )}
           </>
         )}
         <button type="button" class="btn btn-primary" id="resolve-quiz" onClick={() => navigate(`/quiz/game/${quizId}`)}>Rozwiąż Quiz</button>

@@ -24,7 +24,6 @@ const QuestionForm = ({questionId, onDataChange, questionData, onDelete}) => {
   }, [question, answerA, answerB, answerC, answerD, correctAnswer]);
 
   const editQuestion = () => {
-    console.log("Id pytania edytowanego: ", questionId)
     axios({
       method: 'patch',
       url: `http://localhost:8080/api/question/edit/${questionId}`,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import AddQuestionsForm from "../components/AddQuestionsForm";
 import Delete from '../assets/images/delete.png';
@@ -13,8 +13,12 @@ const EditQuestionsPage = () => {
   const [formData, setFormData] = useState([]);
   const {quizId} = useParams()
   const token = localStorage.getItem('token');
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if(!localStorage.getItem("token")) {
+      navigate("/")
+    }
     getQuizQuestionsIds()
   }, [])
 
@@ -31,8 +35,6 @@ const EditQuestionsPage = () => {
       if (quizQuestions && quizQuestions.length > 0) {
         setQuestionsIds(quizQuestions);
         getQuizQuestions(quizQuestions);
-      } else {
-        console.log("Brak pytań w quizie");
       }
     }).catch((error) => {
       console.log(error);
@@ -101,7 +103,6 @@ const EditQuestionsPage = () => {
 
   const handleAssignQuestionsToQuiz = (event) => {
     event.preventDefault()
-    console.log("Id utworzonych pytan do przypisania: ", ids)
     axios({
       method: 'patch',
       url: `http://localhost:8080/api/quiz/patch/addQuestion/${quizId}`,
@@ -111,7 +112,6 @@ const EditQuestionsPage = () => {
       },
       data: ids
     }).then((response) => {
-      console.log("Przypisano pytania do quizu ", response.data)
     }).catch((error) => {
       console.log(error);
     });

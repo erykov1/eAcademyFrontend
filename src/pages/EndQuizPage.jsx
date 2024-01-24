@@ -14,6 +14,7 @@ const EndQuizPage = () => {
   const [isCollapsed, setCollapsed] = useState(false)
   const [quizId, setQuizId] = useState(0)
   const [summaryText, setSummaryText] = useState('')
+  const [summaryResult, setSummaryResult] = useState('')
 
   const handleCollapse = () => {
     setCollapsed(!isCollapsed)
@@ -30,23 +31,36 @@ const EndQuizPage = () => {
   };
 
   useEffect(() => {
-    console.log("location ", location.state)
-    if (location.state && location.state.userAnswers 
+    if (!localStorage.getItem("token")) {
+      navigate("/")
+    }
+    if (location.state && location.state.userAnswers
       && location.state.questions && location.state.quizId) {
-      setResult(location.state.result);
+      setResult(location.state.updatedResult);
       setQuestionsNumber(location.state.questionsNumber)
       setUserAnswers(location.state.userAnswers)
       setQuestions(location.state.questions)
       setQuizId(location.state.quizId)
       handleSummaryText()
+      handleSummaryResult()
     }
   }, [location.state]);
 
   const handleSummaryText = () => {
-    if (result > 5) {
+    if (result >= 5 || result == 0) {
       setSummaryText("pytań")
     } else {
       setSummaryText("pytania")
+    }
+  }
+
+  const handleSummaryResult = () => {
+    if (result >= 5 || result === 0) {
+      setSummaryResult("poprawnych odpowiedzi")
+    } else if (result < 5 && result > 1) {
+      setSummaryResult("poprawne odpowiedzi")
+    } else {
+      setSummaryResult("poprawną odpowiedź")
     }
   }
 
@@ -55,7 +69,7 @@ const EndQuizPage = () => {
       <div className="end-quiz-section">
         <div>
           <p id="end-quiz-section-text">Ukończyłeś Quiz</p>
-          <p id="end-quiz-summary-text">Na {questionsNumber} {summaryText} udzieliłeś {result} poprawnych odpowiedzi</p>
+          <p id="end-quiz-summary-text">Na {questionsNumber} {summaryText} udzieliłeś {result} {summaryResult}</p>
         </div>
         <div className="btn-section-end-quiz">
           <button type="button" className="btn btn-primary" id="btn-end-quiz" onClick={() => navigate("/")}>Powrót do menu</button>

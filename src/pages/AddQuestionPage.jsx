@@ -16,9 +16,11 @@ const AddQuestionPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/")
+    }
     handleAssignQuestionsToQuiz();
   }, [questionsIds]);
-  
   
   const handleAddQuestion = () => {
     setForms([...forms, {}]); 
@@ -59,7 +61,6 @@ const AddQuestionPage = () => {
       setQuestionsIds((prevIds) => [...prevIds, ...ids]);
       handleAssignQuestionsToQuiz(event);
     }).catch((error) => {
-      console.log("Nie działa request");
       console.log(error);
     });
   };
@@ -74,9 +75,7 @@ const AddQuestionPage = () => {
       },
       data: questionsIds
     }).then((response) => {
-      console.log("Przypisano pytania do quizu ", response.data)
     }).catch((error) => {
-      console.log("Nie działa request przypisania pytan do quizu", questionsIds);
       console.log(error);
     });
   }

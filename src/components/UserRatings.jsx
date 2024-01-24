@@ -20,10 +20,8 @@ const UserRatings = ({quizId}) => {
         'Content-Type': 'application/json',
       }
     }).then((response) => {
-      console.log("response data dla rating: ", response.data)
       setRatings(response.data)
     }).catch((error) => {
-      console.log("Nie działa request pobierania ratings");
       console.log(error);
     });
   }

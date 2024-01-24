@@ -4,14 +4,19 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import Quiz from "../components/Quiz";
+import { useNavigate } from "react-router-dom";
 
 const CategoryPage = () => {
   const [categories, setCategories] = useState([])
   const [categoryId, setCategoryId] = useState(0)
   const [quizzes, setQuizzes] = useState([])
   const token = localStorage.getItem('token');
+  const navigate = useNavigate()
 
   useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/')
+    }
     handleGetAllCategories()
   }, [])
 
@@ -26,7 +31,6 @@ const CategoryPage = () => {
     }).then((response) => {
       setCategories(response.data)
     }).catch((error) => {
-      console.log("Nie działa request");
       console.log(error);
     });
   }
@@ -42,7 +46,6 @@ const CategoryPage = () => {
     }).then((response) => {
         setQuizzes(response.data);
     }).catch((error) => {
-        console.log("Nie działa request");
         console.log(error);
     });
   };
@@ -69,6 +72,7 @@ const CategoryPage = () => {
       <div className="separator" />
       <div className="category-section">
         <h2>Quizy</h2>
+        
         {quizzes.map((quiz) => (
           <div key={quiz.quizId}>
             <Quiz quizName={quiz.quizName} quizId={quiz.quizId} />

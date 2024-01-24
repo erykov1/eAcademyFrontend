@@ -1,12 +1,18 @@
 import React from "react"; 
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddCategoryPage = () => {
   const [categoryTitle, setCategoryTitle] = useState('')
   const token = localStorage.getItem('token');
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/')
+    }
+  }, [token])
 
   const handleSaveCategory = (event) => {
     event.preventDefault();
@@ -21,10 +27,8 @@ const AddCategoryPage = () => {
         categoryTitle: categoryTitle
       }
     }).then((response) => {
-      console.log("dodano kategorie : ", categoryTitle)
       navigate('/')
     }).catch((error) => {
-      console.log("Nie działa request");
       console.log(error);
     });
   };

@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
@@ -15,6 +16,7 @@ import QuizDetailsPage from './pages/QuizDetailsPage';
 import EditQuestionsPage from './pages/EditQuestionsPage';
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -25,36 +27,13 @@ function App() {
           <Route path='/signup' element={<RegisterPage/>}/>
           <Route path='/add-quiz' element={<AddQuizPage/>}/>
           <Route path='/add-category' element={<AddCategoryPage/>}/>
-          <Route path="/quiz/details/:quizId" element={
-            isExpired(localStorage.getItem("token") ?? "") ? (
-              <Navigate replace to='/' />
-            ) : (<QuizDetailsPage />)
-          }/>
-          <Route path='/quiz/game/:quizId' element={
-            isExpired(localStorage.getItem("token") ?? "") ? (
-              <Navigate replace to='/' />
-            ) : (<QuizPage />)
-          }/>
-          <Route path='/quiz/end-quiz' element={
-            isExpired(localStorage.getItem("token") ?? "") ? (
-              <Navigate replace to='/' />
-            ) : (<EndQuizPage />)
-          }/>
-          <Route path='/add-question' element={
-            isExpired(localStorage.getItem("token") ?? "") ? (
-              <Navigate replace to='/' />
-            ) : (<AddQuestionPage/>)
-          } />
-          <Route path='/categories' element={
-            isExpired(localStorage.getItem("token") ?? "") ? (
-              <Navigate replace to='/' />
-            ) : (<CategoryPage />)
-          } />
-          <Route path='/quiz/edit/:quizId' element={
-            isExpired(localStorage.getItem("token") ?? "") ? (
-              <Navigate replace to='/' />
-            ) : (<EditQuestionsPage />)
-          } />
+          <Route path="/quiz/details/:quizId" element={<QuizDetailsPage />}/>
+          <Route path='/quiz/game/:quizId' element={<QuizPage />}/>
+          <Route path='/quiz/end-quiz' element={<EndQuizPage />}/>
+          <Route path='/add-question' element={<AddQuestionPage/>}/>
+          <Route path='/categories' element={<CategoryPage />}/>
+          <Route path='/quiz/edit/:quizId' element={<EditQuestionsPage />}/>
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </div>

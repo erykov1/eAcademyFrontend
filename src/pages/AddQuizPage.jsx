@@ -13,6 +13,9 @@ const AddQuizPage = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/")
+    }
     handleGetCategoriesTitles()
   }, [])
 
@@ -42,10 +45,8 @@ const AddQuizPage = () => {
         quizId: response.data.quizId,
         assignedCategory: assignedCategory
       };
-      console.log("Przesylanie quizId i assignedCategory", quizData);
       navigate('/add-question', { state: quizData });
     }).catch((error) => {
-      console.log("Nie działa request");
       console.log(error);
     });
   };
@@ -61,7 +62,6 @@ const AddQuizPage = () => {
     }).then((response) => {
       setCategory(response.data)
     }).catch((error) => {
-      console.log("Nie działa request");
       console.log(error);
     });
   }

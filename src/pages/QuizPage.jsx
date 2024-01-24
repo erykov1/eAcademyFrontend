@@ -1,5 +1,5 @@
 import React from "react"; 
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import '../components/QuestionDetails';
 import QuestionDetails from "../components/QuestionDetails";
 import axios from "axios";
@@ -16,9 +16,14 @@ const QuizPage = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const { quizId } = useParams();
   const token = localStorage.getItem('token');
+  const userAnswersRef = useRef([]);
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/")
+    }
     getQuiz();
+    userAnswersRef.current = userAnswers;
   }, []);
 
   const getQuiz = () => {
@@ -61,20 +66,19 @@ const QuizPage = () => {
   const handleAnswerClick = (selectedAnswerIndex) => {
     setQuestionsNumber(questions.length);
     if (questions.length === 0 || currentQuestionIndex >= questions.length) {
-      console.error("Brak danych quizu lub błędny indeks pytania");
       return;
     }
     const currentQuestion = questions[currentQuestionIndex];
     const isAnswerCorrect = selectedAnswerIndex === currentQuestion?.correctAnswer;
+    userAnswersRef.current = [...userAnswersRef.current, selectedAnswerIndex];
     setUserAnswers((prevAnswers) => [...prevAnswers, selectedAnswerIndex]);
     setIsCorrect(isAnswerCorrect); 
-    setResult((prevResult) => (isAnswerCorrect ? prevResult + 1 : prevResult));
-    
+    const updatedResult = isAnswerCorrect ? result + 1 : result;
+    setResult(updatedResult);
     if (currentQuestionIndex === questions.length - 1) {
-      console.log("user answers", userAnswers.push(selectedAnswerIndex))
       const timeoutId = setTimeout(() => {
         navigate('/quiz/end-quiz', {
-          state: { result, questionsNumber, userAnswers, questions, quizId },
+          state: { updatedResult, questionsNumber, userAnswers: userAnswersRef.current, questions, quizId },
         });
       }, 1000);
   

@@ -16,7 +16,6 @@ const AddQuiz = () => {
         questions: questions
       }
     }).then((response) => {
-      console.log("Dodano pytania: ", questions)
     }).catch((error) =>{
       console.log(error)
     })

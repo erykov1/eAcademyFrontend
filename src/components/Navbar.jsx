@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Login from '../assets/images/enter.png';
 import Register from '../assets/images/icons8-register-100.png';
 import Logout from '../assets/images/logout.png';
-import AddQuiz from '../assets/images/quiz.png';
 import { jwtDecode } from 'jwt-decode';
 
 const Navbar = () => {

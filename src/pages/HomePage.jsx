@@ -12,9 +12,7 @@ const HomePage = () => {
       </div>
       <div className="home-page-section">
         <p id="home-page-section-text">
-        Rozpocznij swoją podróż dziś i odkryj, jak nasze kursy w formie quizów mogą zmienić Twoje podejście do nauki. <br/>
-        Gotowy na wyzwanie?<br/>
-        Dołącz do naszej społeczności uczących się i zacznij zdobywać wiedzę w sposób interaktywny i ekscytujący!
+        Dołącz do naszej społeczności zacznij zdobywać wiedzę!
         </p>
         <button type="button" class="btn btn-success" id="btn-home-page" onClick={() => navigate('/signup')}>Załóż konto</button>
       </div>

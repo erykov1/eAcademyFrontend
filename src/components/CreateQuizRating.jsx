@@ -26,9 +26,7 @@ const CreateQuizRating = ({quizId}) => {
         quizId: quizId
       }
     }).then((response) => {
-      console.log("Utworzono opinie na temat quizu: ", response.data)
     }).catch((error) =>{
-      console.log("Nie dziala request")
       console.log(error)
     })
   }
